@@ -43,9 +43,9 @@ public class RoomNumberTest {
 
     @Test
     public void equals() {
-        RoomNumber one = new RoomNumber("00-001");
-        RoomNumber two = new RoomNumber("00-001");
-        RoomNumber three = new RoomNumber("00-003");
+        RoomNumber one = new RoomNumber("01-001");
+        RoomNumber two = new RoomNumber("01-001");
+        RoomNumber three = new RoomNumber("01-003");
 
         // same room number -> true
         assertEquals(one, one);
