@@ -2,9 +2,11 @@ package seedu.address.model.resident;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.resident.TypicalResidents.ALICE;
+import static seedu.address.testutil.resident.TypicalResidents.BENSON;
 import static seedu.address.testutil.resident.TypicalResidents.BOB;
 
 import java.util.Arrays;
@@ -164,5 +166,30 @@ public class UniqueResidentListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueResidentList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void equals() {
+        UniqueResidentList one = new UniqueResidentList();
+        UniqueResidentList two = new UniqueResidentList();
+        UniqueResidentList three = new UniqueResidentList();
+        one.add(ALICE);
+        two.add(ALICE);
+        three.add(BENSON);
+
+        // same resident list -> true
+        assertEquals(one, one);
+
+        // same value -> true
+        assertEquals(one, two);
+
+        // different value -> false
+        assertNotEquals(one, three);
+
+        // null resident list -> false
+        assertNotEquals(one, null);
+
+        // different instance -> false
+        assertNotEquals(one, 1);
     }
 }

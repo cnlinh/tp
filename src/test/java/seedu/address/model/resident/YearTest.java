@@ -1,6 +1,8 @@
 package seedu.address.model.resident;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -35,5 +37,27 @@ public class YearTest {
 
         // valid years
         assertTrue(Year.isValidYear("4"));
+    }
+
+    @Test
+    public void equals() {
+        Year one = new Year("1");
+        Year two = new Year("1");
+        Year three = new Year("3");
+
+        // same year -> true
+        assertEquals(one, one);
+
+        // same value -> true
+        assertEquals(one, two);
+
+        // different value -> false
+        assertNotEquals(one, three);
+
+        // null year -> false
+        assertNotEquals(one, null);
+
+        // different instance -> false
+        assertNotEquals(one, 1);
     }
 }

@@ -1,6 +1,8 @@
 package seedu.address.model.issue;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -35,5 +37,27 @@ public class DescriptionTest {
         // All valid characters
         assertTrue(Description.isValidDescription(
                 "ABCDEFGHIJKLMNOPQRSTUWXYZabcdefghijklmnopqrstuvwxyz1234567890 "));
+    }
+
+    @Test
+    public void equals() {
+        Description one = new Description("one");
+        Description two = new Description("one");
+        Description three = new Description("three");
+
+        // same description -> true
+        assertEquals(one, one);
+
+        // same value -> true
+        assertEquals(one, two);
+
+        // different value -> false
+        assertNotEquals(one, three);
+
+        // null category -> false
+        assertNotEquals(one, null);
+
+        // different instance -> false
+        assertNotEquals(one, 1);
     }
 }

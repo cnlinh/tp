@@ -2,8 +2,11 @@ package seedu.address.model.issue;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.issue.TypicalIssues.ISSUE_09_100;
+import static seedu.address.testutil.issue.TypicalIssues.ISSUE_09_110;
 import static seedu.address.testutil.issue.TypicalIssues.ISSUE_10_100;
 import static seedu.address.testutil.issue.TypicalIssues.ISSUE_11_110;
 
@@ -146,5 +149,30 @@ public class IssueListTest {
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> issueList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void equals() {
+        IssueList one = new IssueList();
+        IssueList two = new IssueList();
+        IssueList three = new IssueList();
+        one.add(ISSUE_09_100);
+        two.add(ISSUE_09_100);
+        three.add(ISSUE_09_110);
+
+        // same issue list -> true
+        assertEquals(one, one);
+
+        // same value -> true
+        assertEquals(one, two);
+
+        // different value -> false
+        assertNotEquals(one, three);
+
+        // null issue list -> false
+        assertNotEquals(one, null);
+
+        // different instance -> false
+        assertNotEquals(one, 1);
     }
 }

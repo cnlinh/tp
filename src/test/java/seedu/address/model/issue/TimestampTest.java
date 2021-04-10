@@ -1,6 +1,8 @@
 package seedu.address.model.issue;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -47,5 +49,27 @@ public class TimestampTest {
         assertTrue(Timestamp.isValidTimestamp("2021/12/31 12:00aM")); // partially capitalized
         assertTrue(Timestamp.isValidTimestamp("2021/12/31 11:59pm")); // 11:59 pm
         assertTrue(Timestamp.isValidTimestamp("0001/01/01 12:00am")); // earliest datetime
+    }
+
+    @Test
+    public void equals() {
+        Timestamp one = new Timestamp("2021/12/31 12:00am");
+        Timestamp two = new Timestamp("2021/12/31 12:00am");
+        Timestamp three = new Timestamp("2021/12/31 11:59pm");
+
+        // same timestamp -> true
+        assertEquals(one, one);
+
+        // same value -> true
+        assertEquals(one, two);
+
+        // different value -> false
+        assertNotEquals(one, three);
+
+        // null timestamp -> false
+        assertNotEquals(one, null);
+
+        // different instance -> false
+        assertNotEquals(one, 1);
     }
 }

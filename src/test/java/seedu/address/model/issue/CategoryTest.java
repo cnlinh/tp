@@ -1,6 +1,8 @@
 package seedu.address.model.issue;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -35,5 +37,27 @@ public class CategoryTest {
         // alphanumerical
         assertTrue(Category.isValidCategory("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMOPQRSTUVWXYZ1234567890"));
         assertTrue(Category.isValidCategory("Wood Furniture")); // alphabets with space
+    }
+
+    @Test
+    public void equals() {
+        Category one = new Category("one");
+        Category two = new Category("one");
+        Category three = new Category("three");
+
+        // same category -> true
+        assertEquals(one, one);
+
+        // same value -> true
+        assertEquals(one, two);
+
+        // different value -> false
+        assertNotEquals(one, three);
+
+        // null category -> false
+        assertNotEquals(one, null);
+
+        // different instance -> false
+        assertNotEquals(one, 1);
     }
 }

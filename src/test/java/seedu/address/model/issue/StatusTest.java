@@ -1,6 +1,8 @@
 package seedu.address.model.issue;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -40,5 +42,27 @@ public class StatusTest {
         assertTrue(Status.isValidStatus("ClOsEd")); // mix case
         assertTrue(Status.isValidStatus("c")); // single lower case
         assertTrue(Status.isValidStatus("C")); // single upper case
+    }
+
+    @Test
+    public void equals() {
+        Status one = new Status("Pending");
+        Status two = new Status("Pending");
+        Status three = new Status("Closed");
+
+        // same status -> true
+        assertEquals(one, one);
+
+        // same value -> true
+        assertEquals(one, two);
+
+        // different value -> false
+        assertNotEquals(one, three);
+
+        // null status -> false
+        assertNotEquals(one, null);
+
+        // different instance -> false
+        assertNotEquals(one, 1);
     }
 }

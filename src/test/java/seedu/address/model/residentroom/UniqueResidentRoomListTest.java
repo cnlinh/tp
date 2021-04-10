@@ -2,6 +2,7 @@ package seedu.address.model.residentroom;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.residentroom.TypicalResidentRooms.ALICE_ROOM_NUMBER;
@@ -184,5 +185,30 @@ public class UniqueResidentRoomListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueResidentRoomList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void equals() {
+        UniqueResidentRoomList one = new UniqueResidentRoomList();
+        UniqueResidentRoomList two = new UniqueResidentRoomList();
+        UniqueResidentRoomList three = new UniqueResidentRoomList();
+        one.add(bobEdited);
+        two.add(bobEdited);
+        three.add(editedAlice);
+
+        // same resident list -> true
+        assertEquals(one, one);
+
+        // same value -> true
+        assertEquals(one, two);
+
+        // different value -> false
+        assertNotEquals(one, three);
+
+        // null resident list -> false
+        assertNotEquals(one, null);
+
+        // different instance -> false
+        assertNotEquals(one, 1);
     }
 }

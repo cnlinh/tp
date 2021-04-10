@@ -1,6 +1,8 @@
 package seedu.address.model.issue;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -37,5 +39,27 @@ public class RoomNumberTest {
 
         // valid rooms
         assertTrue(RoomNumber.isValidRoomNumber("01-234"));
+    }
+
+    @Test
+    public void equals() {
+        RoomNumber one = new RoomNumber("00-001");
+        RoomNumber two = new RoomNumber("00-001");
+        RoomNumber three = new RoomNumber("00-003");
+
+        // same room number -> true
+        assertEquals(one, one);
+
+        // same value -> true
+        assertEquals(one, two);
+
+        // different value -> false
+        assertNotEquals(one, three);
+
+        // null room number -> false
+        assertNotEquals(one, null);
+
+        // different instance -> false
+        assertNotEquals(one, 1);
     }
 }
